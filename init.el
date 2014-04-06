@@ -21,7 +21,21 @@
 (prefer-coding-system'utf-8)
 
 ;;改行後自動インデント
-(global-set-key "\C-m" 'newline-and-indent)
+(global-set-key (kbd "C-m") 'newline-and-indent)
+(global-set-key (kbd "C-j") 'newline-and-indent)
+
+;;自動インデント
+(global-set-key (kbd "C-M-¥") 'indent-region)
+
+;;表示行の折り返し
+(setq truncate-partial-width-windows nil)
+
+;;ruby-insert-end
+(defun ruby-insert-end()
+  (interactive)
+  (insert"end")
+  (ruby-indent-line t)
+  (end-of-line))
 
 ;;Ctrl-hをBSにする
 (global-set-key"\C-h"'delete-backward-char)
@@ -38,12 +52,8 @@
 ;;ファイルサイズを表示
 (size-indication-mode t)
 
-;;時計を表示
-;(setq display-time-day-and-date t)
-;(setq display-time-24hhr-format t)
-
 ;;バッテリー残量
-(display-battery-mode t)
+;(display-battery-mode t)
 
 ;;interactively Do Things idoモード
 (require 'ido)
@@ -179,6 +189,8 @@
 	       "~/.emacs.d/elisp/ac-dict")
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
   (ac-config-default))
+(define-key ac-completing-map (kbd "C-n") 'ac-next)
+(define-key ac-completing-map (kbd "C-p") 'ac-previous)
 
   
 
@@ -198,6 +210,7 @@
 (defun ruby-mode-hooks ()
   (ruby-electric-mode t)
   (ruby-block-mode t))
+
 ;;ruby-mode-hookに追加
 (add-hook 'ruby-mode-hook 'ruby-mode-hooks)
 
@@ -238,7 +251,7 @@
             (read-string "Start value: (0) " nil nil "0")))
          (string-to-number
           (read-string "Increment: (1) " nil nil "1"))
-         (read-string (concat "Format: (" cua--rectangle-seq-format ") "))))
+         (read-sring (concat "Format: (" cua--rectangle-seq-format ") "))))
   (if (= (length format) 0)
       (setq (format "" &optional OBJECTS) cua--rectangle-seq-format)
     (setq cua--rectangle-seq-format format))
@@ -251,6 +264,49 @@
 
 ;;YAsnippet
 (require 'yasnippet)
+
 (yas-global-mode 1)
 
+;; smooth-scroll
+(require 'smooth-scroll)
+(smooth-scroll-mode 0)
+
+;; haml-mode
+(require 'haml-mode)
+
+;; js2-mode
+(require 'js2-mode)
+
+;; js-comint
+(require 'js-comint)
+(setq inferior-js-program-command "env NODE_NO_READLINE=1 /usr/local/bin/node")
+(add-hook 'inferior-js-mode-hook 'ansi-color-for-comint-mode-on)
+(add-hook 'js2-mode-hook '(lambda ()
+			    (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+			    (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+			    (local-set-key "\C-cb" 'js-send-buffer)
+			    (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+			    (local-set-key "\C-cl" 'js-send-file-and-go)
+			    (local-set-key "\C-c\C-r" 'js-send-region)
+			    ))
+
+;;かっこの補完
+(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\<") 'skeleton-pair-insert-maybe)
+(setq skeleton-pair 1)
+
+;;コメントタイプ
+(setq comment-style 'multi-line)
+
+;;scss-modeを導入
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("¥¥.scss$" . scss-mode))
+(setq scss-compile-at-save nil)
+
+;;ラインの折り返し
+(setq truncate-lines nil)
 

@@ -1,2 +1,0 @@
-
-((digest . "a898cd5af1788584f3c95d5cf6429c43") (undo-list nil (1170 . 1178) nil (1169 . 1170) nil (1167 . 1169) nil (1166 . 1167) nil (1156 . 1166) nil (1155 . 1156) nil (1154 . 1155) (t . 1348813858) nil (#(", :dependent => :destroy" 0 2 (fontified t) 2 12 (fontified t face font-lock-constant-face) 12 16 (fontified t) 16 23 (fontified t face font-lock-constant-face) 23 24 (fontified t syntax-table nil face font-lock-constant-face)) . 1154) (t . 1348807817)))

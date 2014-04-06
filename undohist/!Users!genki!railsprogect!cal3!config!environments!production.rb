@@ -1,2 +1,0 @@
-
-((digest . "9961561268cd4592d691effab20b3741") (undo-list nil (635 . 638) nil (#("u" 0 1 (fontified nil)) . -635) nil (634 . 636) nil (#("f" 0 1 (fontified t syntax-table nil)) . -634) nil (#("a" 0 1 (fontified t syntax-table nil)) . -635) nil (#("l" 0 1 (fontified t syntax-table nil)) . -636) nil (#("s" 0 1 (fontified t syntax-table nil)) . -637) nil (#("e" 0 1 (fontified t syntax-table nil face font-lock-variable-name-face)) . -638) (t . 1353928120)))

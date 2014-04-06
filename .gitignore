@@ -1,0 +1,5 @@
+#undo履歴
+undohist/*
+
+#emacsのバックアップファイル
+*~
